@@ -1,0 +1,1120 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{MLBP2018 Project Report Template}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \textbf{Machine Learning Basic Principles 2018 - Data Analysis Project
+Report}
+
+    \hypertarget{initialize-jupyter-notebook.-scroll-down-for-report}{%
+\section{Initialize Jupyter Notebook. Scroll down for
+report!}\label{initialize-jupyter-notebook.-scroll-down-for-report}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}113}]:} \PY{c+c1}{\PYZsh{} Import libraries}
+          \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+          \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+          \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+          \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{display} \PY{k}{import} \PY{n}{display}\PY{p}{,} \PY{n}{HTML}
+          \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{datasets} \PY{k}{import} \PY{n}{make\PYZus{}classification}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}model} \PY{k}{import} \PY{n}{LogisticRegression}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{ensemble} \PY{k}{import} \PY{n}{RandomForestClassifier}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{decomposition} \PY{k}{import} \PY{n}{PCA}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{multiclass} \PY{k}{import} \PY{n}{OneVsRestClassifier} \PY{c+c1}{\PYZsh{} ovr}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{log\PYZus{}loss}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{preprocessing}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{metrics}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{confusion\PYZus{}matrix}
+          \PY{k+kn}{from} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{ticker} \PY{k}{import} \PY{n}{FuncFormatter}
+          \PY{k+kn}{import} \PY{n+nn}{matplotlib}
+          
+          \PY{c+c1}{\PYZsh{}...}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}114}]:} \PY{c+c1}{\PYZsh{}Variables}
+          \PY{n}{output\PYZus{}file} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{./output/normal\PYZus{}accuracy.csv}\PY{l+s+s2}{\PYZdq{}}
+          \PY{n}{output\PYZus{}file\PYZus{}logloss} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{./output/normal\PYZus{}logloss.csv}\PY{l+s+s2}{\PYZdq{}}
+          \PY{n}{np}\PY{o}{.}\PY{n}{set\PYZus{}printoptions}\PY{p}{(}\PY{n}{precision}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{)}
+          \PY{n}{labels} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{1}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pop\PYZus{}Rock}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+          \PY{l+m+mi}{2}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Electronic}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+          \PY{l+m+mi}{3}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rap}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+          \PY{l+m+mi}{4}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Jazz}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+          \PY{l+m+mi}{5}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Latin}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+          \PY{l+m+mi}{6}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RnB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+          \PY{l+m+mi}{7}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{International}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+          \PY{l+m+mi}{8}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+          \PY{l+m+mi}{9}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Reggae}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+          \PY{l+m+mi}{10}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Blues}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}
+          
+          
+          \PY{c+c1}{\PYZsh{} Read in data}
+          \PY{n}{train\PYZus{}data\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{train\PYZus{}data.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{header}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{names}\PY{o}{=}\PY{n}{generate\PYZus{}train\PYZus{}labels}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n}{train\PYZus{}data\PYZus{}labels\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{train\PYZus{}labels.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{header} \PY{o}{=} \PY{k+kc}{None}\PY{p}{,} \PY{n}{names} \PY{o}{=} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sample\PYZus{}label}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+          \PY{n}{test\PYZus{}data\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{test\PYZus{}data.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{header} \PY{o}{=} \PY{k+kc}{None}\PY{p}{)}
+          \PY{n}{all\PYZus{}labels} \PY{o}{=} \PY{n}{train\PYZus{}data\PYZus{}labels\PYZus{}df}\PY{o}{.}\PY{n}{as\PYZus{}matrix}\PY{p}{(}\PY{p}{)}
+          \PY{n}{all\PYZus{}labels\PYZus{}text} \PY{o}{=} \PY{p}{[}\PY{n}{labels}\PY{p}{[}\PY{n+nb}{int}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{]} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{all\PYZus{}labels}\PY{p}{]}
+          \PY{n}{all\PYZus{}train\PYZus{}features} \PY{o}{=} \PY{n}{train\PYZus{}data\PYZus{}df}\PY{o}{.}\PY{n}{as\PYZus{}matrix}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/opt/conda/lib/python3.6/site-packages/ipykernel\_launcher.py:21: FutureWarning: Method .as\_matrix will be removed in a future version. Use .values instead.
+/opt/conda/lib/python3.6/site-packages/ipykernel\_launcher.py:23: FutureWarning: Method .as\_matrix will be removed in a future version. Use .values instead.
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}61}]:} \PY{k}{def} \PY{n+nf}{generate\PYZus{}train\PYZus{}labels}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n}{rhythm} \PY{o}{=} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rhythm}\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{i} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{168}\PY{p}{)}\PY{p}{]}
+             \PY{n}{chroma} \PY{o}{=} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{chroma}\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{i} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{168}\PY{p}{,} \PY{l+m+mi}{216}\PY{p}{)}\PY{p}{]}
+             \PY{n}{mfcc} \PY{o}{=} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mfcc}\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{i} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{216}\PY{p}{,}\PY{l+m+mi}{264}\PY{p}{)}\PY{p}{]}
+             \PY{k}{return} \PY{n}{rhythm} \PY{o}{+} \PY{n}{chroma} \PY{o}{+} \PY{n}{mfcc}
+         
+         \PY{k}{def} \PY{n+nf}{to\PYZus{}percent}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{n}{position}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} Ignore the passed in position. This has the effect of scaling the default}
+             \PY{c+c1}{\PYZsh{} tick locations.}
+             \PY{n}{s} \PY{o}{=} \PY{n+nb}{str}\PY{p}{(}\PY{l+m+mi}{100} \PY{o}{*} \PY{n}{y}\PY{p}{)}
+         
+             \PY{c+c1}{\PYZsh{} The percent symbol needs escaping in latex}
+             \PY{k}{if} \PY{n}{matplotlib}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{text.usetex}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o+ow}{is} \PY{k+kc}{True}\PY{p}{:}
+                 \PY{k}{return} \PY{n}{s} \PY{o}{+} \PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{k}{return} \PY{n}{s} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}
+             
+         \PY{c+c1}{\PYZsh{} Writing logloss format}
+         \PY{k}{def} \PY{n+nf}{write\PYZus{}output\PYZus{}logloss}\PY{p}{(}\PY{n}{model\PYZus{}prediction}\PY{p}{,} \PY{n}{output\PYZus{}file}\PY{p}{)}\PY{p}{:}
+             \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{output\PYZus{}file}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{w}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{output}\PY{p}{:}
+                 \PY{n}{output}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sample\PYZus{}id,Class\PYZus{}1,Class\PYZus{}2,Class\PYZus{}3,Class\PYZus{}4,Class\PYZus{}5,Class\PYZus{}6,Class\PYZus{}7,Class\PYZus{}8,Class\PYZus{}9,Class\PYZus{}10}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                 \PY{k}{for} \PY{n}{idx}\PY{p}{,} \PY{n}{pred} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{model\PYZus{}prediction}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{s}\PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}
+                     \PY{k}{for} \PY{n}{val} \PY{o+ow}{in} \PY{n}{pred}\PY{p}{:}
+                         \PY{n}{s} \PY{o}{+}\PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{val}\PY{p}{)}
+                     \PY{n}{output}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{idx} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{+} \PY{n}{s} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                     
+         
+         \PY{c+c1}{\PYZsh{} Writing accuracy format}
+         \PY{k}{def} \PY{n+nf}{write\PYZus{}output}\PY{p}{(}\PY{n}{model\PYZus{}prediction}\PY{p}{,} \PY{n}{output\PYZus{}file}\PY{p}{)}\PY{p}{:}
+             \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{output\PYZus{}file}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{w}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{output}\PY{p}{:}
+                 \PY{n}{output}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sample\PYZus{}id,Sample\PYZus{}label}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                 \PY{k}{for} \PY{n}{idx}\PY{p}{,} \PY{n}{pred} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{model\PYZus{}prediction}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{output}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{idx} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{,}\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n}{pred}\PY{p}{)}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{report-starts}{%
+\section{\#\#\#\#\# REPORT STARTS \#\#\#\#\#}\label{report-starts}}
+
+    \hypertarget{song-genre-classification-using-logistic-regression-and-random-forest-classifier}{%
+\section{\texorpdfstring{\emph{Song Genre Classification Using Logistic
+Regression and Random Forest
+Classifier}}{Song Genre Classification Using Logistic Regression and Random Forest Classifier}}\label{song-genre-classification-using-logistic-regression-and-random-forest-classifier}}
+
+    \hypertarget{abstract}{%
+\subsection{Abstract}\label{abstract}}
+
+    \emph{Precise summary of the whole report, previews the contents and
+results. Must be a single paragraph between 100 and 200 words.}
+
+    \hypertarget{introduction}{%
+\subsection{1. Introduction}\label{introduction}}
+
+    In this project our goal is to classify songs by their genre. The
+classification is implemented by methods we have learned in the Machine
+Learning Basic Principle (MLBP) course so far. Classification of songs
+is a good real-life case where Machine Learning (ML) methods can be
+utilized while the topic is still easily understandable. For instance,
+song classification algorithm can be used by Spotify for song
+recommendations based on some user's most listened songs.
+
+Although the project is well defined and easily understood by human, it
+is however not a easy task for machines. Some of the genres are very
+distinct from each other, such as heavy metal and jazz. On the other
+hand, many features of pop and blues are very close to each other which
+makes the distinction between these genres a lot harder.
+
+In a nutshell, the goal was to construct a predictor h(x) for each genre
+and analyse how well this predictor is. The goal of this project is to
+apply the machine learning concepts we have learned so far in the class
+in a real life case which is determine genre of a song by over 200
+features of the song.
+
+Our report consist of following chapters 2) Data analysis, 3) Methods
+and Experiments, 4) Results and finally 5) Discussion and Conclusion. In
+chapter 2 we have familiarized ourselves with the given training data
+and its multiple different features. The insights from data analysis
+stand a crucial part in choosing of method. The implementation and
+experiments of ML methods have been documented in chapter 3 following
+chapter 4 where results of experiments are presented. In the last
+chapter 5 we have discussed our learnings from the project.
+
+What do you hope to learn? Machine Learning.
+
+    \hypertarget{data-analysis}{%
+\subsection{2. Data analysis}\label{data-analysis}}
+
+    \emph{Briefly describe data (class distribution, dimensionality) and how
+will it affect classification. Visualize the data. Don't focus too much
+on the meaning of the features, unless you want to.}
+
+\emph{- Include histograms showing class distribution.}
+
+For the project we have been provided feature data and label data for
+training of the model, and also test data without labels for validating
+of the accuracy and logloss on Kaggle. The label data includes label for
+each sample in feature dataset. There are in total 10 different labels
+(class) varying from electronic to jazz. A sample of the data is shown
+below.
+
+The class distribution is rather skewed towards the Genre 1 which is Pop
+\& Rock. Almost 60\% of the songs are classified as 1 (Pop \& Rock). The
+domination of one class can affect the classification which has to be
+taken into account when testing models. In the next chapter we have
+discussed a method where we tried to balance the data before training
+for better results.
+
+Furthermore, the data is ordered in such a way that first 3000 of the
+samples are 80\% class 1, see second histogram. This needs to be taken
+into account when splitting the data.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}107}]:} \PY{n}{display}\PY{p}{(}\PY{n}{HTML}\PY{p}{(}\PY{n}{train\PYZus{}data\PYZus{}labels\PYZus{}df}\PY{p}{[}\PY{l+m+mi}{3456}\PY{p}{:}\PY{l+m+mi}{3461}\PY{p}{]}\PY{o}{.}\PY{n}{to\PYZus{}html}\PY{p}{(}\PY{n}{max\PYZus{}rows}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n}{n}\PY{p}{,} \PY{n}{bins}\PY{p}{,} \PY{n}{patches} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{all\PYZus{}labels}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{n}{density}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{facecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Histogram of Genres}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.6}\PY{p}{]}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Genre}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{vals} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{p}{)}
+          \PY{n}{formatter} \PY{o}{=} \PY{n}{FuncFormatter}\PY{p}{(}\PY{n}{to\PYZus{}percent}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}formatter}\PY{p}{(}\PY{n}{formatter}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+          
+          \PY{n}{n}\PY{p}{,} \PY{n}{bins}\PY{p}{,} \PY{n}{patches} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{all\PYZus{}labels}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{3000}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{n}{density}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{facecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Histogram of first 3000 songs}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ Genres}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Genre}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{vals} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{p}{)}
+          \PY{n}{formatter} \PY{o}{=} \PY{n}{FuncFormatter}\PY{p}{(}\PY{n}{to\PYZus{}percent}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}formatter}\PY{p}{(}\PY{n}{formatter}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+<IPython.core.display.HTML object>
+    \end{verbatim}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    The feature data provided to us consists of 4364 samples of which each
+has 264 features. The features are divided in three categories: 1) Rhytm
+(168 features) 2) Pitch (48 features) and 3) Timbre (48 features). The
+dimensionality of the data is hence rather high. A sample of the data is
+shown below
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}71}]:} \PY{n}{display}\PY{p}{(}\PY{n}{HTML}\PY{p}{(}\PY{n}{train\PYZus{}data\PYZus{}df}\PY{o}{.}\PY{n}{to\PYZus{}html}\PY{p}{(}\PY{n}{max\PYZus{}rows}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+<IPython.core.display.HTML object>
+    \end{verbatim}
+
+    
+    Analysing the data visually is very hard when the dimensionality
+increases over 3. There are multiple ways for reducing the dimensions of
+dataset, so it can be further analyzed. We have used PCA to reduce the
+number of features. The features are divided in three categories: 1)
+Timbre; 2) Rhytm and 3) Pitch. In theory the data could be reduced to
+these three components, but if the features are reduced under, see
+below.
+
+We noticed by trial and error that with six Principle Components it is
+possible to maintain accuracy of the data and 99\% of the variance of
+the data.
+
+Scatter plot of reduced data set (6 features)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}96}]:} \PY{n}{all\PYZus{}train\PYZus{}features} \PY{o}{=} \PY{n}{train\PYZus{}data\PYZus{}df}\PY{o}{.}\PY{n}{as\PYZus{}matrix}\PY{p}{(}\PY{p}{)}
+         \PY{n}{cov\PYZus{}mat} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{cov}\PY{p}{(}\PY{n}{all\PYZus{}train\PYZus{}features}\PY{p}{)}
+         \PY{n}{u}\PY{p}{,}\PY{n}{s}\PY{p}{,}\PY{n}{v} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{svd}\PY{p}{(}\PY{n}{cov\PYZus{}mat}\PY{p}{)}
+         \PY{n}{s\PYZus{}sum} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{s}\PY{p}{)}
+         \PY{n}{var} \PY{o}{=} \PY{l+m+mi}{1}
+         \PY{n}{n\PYZus{}components} \PY{o}{=} \PY{l+m+mi}{100}
+         \PY{k}{while} \PY{n}{n\PYZus{}components}\PY{o}{\PYZgt{}}\PY{l+m+mi}{0} \PY{o+ow}{and} \PY{n}{var}\PY{o}{\PYZgt{}}\PY{o}{=}\PY{l+m+mf}{0.9999}\PY{p}{:}
+             \PY{n}{n\PYZus{}components} \PY{o}{\PYZhy{}}\PY{o}{=} \PY{l+m+mi}{1}
+             \PY{n}{var} \PY{o}{=} \PY{n+nb}{float}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{s}\PY{p}{[}\PY{p}{:}\PY{n}{n\PYZus{}components}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{n}{s\PYZus{}sum}
+         \PY{n}{n\PYZus{}components} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{n\PYZus{}components}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ PC components give the optimal result}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/opt/conda/lib/python3.6/site-packages/ipykernel\_launcher.py:1: FutureWarning: Method .as\_matrix will be removed in a future version. Use .values instead.
+  """Entry point for launching an IPython kernel.
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+6  PC components give the optimal result
+
+    \end{Verbatim}
+
+    Below we have reduced the number of features from 264 down to 6, and
+plotted features in pairwise plot. From the plot it is obvious that
+there is correlation between some features. There are also quite a few
+features which create a T shaped plot in different directions which
+means that the correlation is not linear.
+
+There are only two cases where points where points where no correlation
+can be seen between features, such as 2 vs 5. All points have also been
+colored by the label, and from the plots it can be seen that the colors
+are highly mixed and no distinct clusters can be seen. This may indicate
+that good results cannot be obtained from this dataset as it is not easy
+to distinct different labels by their features.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}99}]:} \PY{n}{pca} \PY{o}{=} \PY{n}{PCA}\PY{p}{(}\PY{n}{n\PYZus{}components} \PY{o}{=} \PY{l+m+mi}{6}\PY{p}{,} \PY{n}{svd\PYZus{}solver} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{full}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{features\PYZus{}for\PYZus{}scatter} \PY{o}{=} \PY{n}{pca}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{train\PYZus{}data\PYZus{}df}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}features\PYZus{}for\PYZus{}scatter = preprocessing.normalize(features\PYZus{}for\PYZus{}scatter, \PYZsq{}l2\PYZsq{})}
+         \PY{n}{features\PYZus{}for\PYZus{}scatter} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{features\PYZus{}for\PYZus{}scatter}\PY{p}{)}
+         \PY{n}{features\PYZus{}for\PYZus{}scatter}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{labels}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{all\PYZus{}labels\PYZus{}text}
+         
+         \PY{c+c1}{\PYZsh{}Pair\PYZhy{}wise Scatter Plots}
+         \PY{n}{pp} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{pairplot}\PY{p}{(}\PY{n}{features\PYZus{}for\PYZus{}scatter}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+m+mf}{1.8}\PY{p}{,} \PY{n}{aspect}\PY{o}{=}\PY{l+m+mf}{1.8}\PY{p}{,}
+                           \PY{n}{plot\PYZus{}kws}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{edgecolor}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{)}\PY{p}{,}
+                           \PY{n}{diag\PYZus{}kind}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{kde}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{diag\PYZus{}kws}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{shade}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{p}{,} \PY{n}{hue}\PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{labels}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{fig} \PY{o}{=} \PY{n}{pp}\PY{o}{.}\PY{n}{fig} 
+         \PY{n}{fig}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{top}\PY{o}{=}\PY{l+m+mf}{0.93}\PY{p}{,} \PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
+         \PY{n}{t} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PCA Components Pair\PYZhy{}wise plot}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{14}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/opt/conda/lib/python3.6/site-packages/seaborn/axisgrid.py:2065: UserWarning: The `size` parameter has been renamed to `height`; pleaes update your code.
+  warnings.warn(msg, UserWarning)
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_19_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    We divided the training set two distinct sets, one for training and
+second for validation of the model. We started with the rule of thumb
+70/30 ratio which proved to give the best results. The other ratios we
+tried were 50/50, 60/40 and 80/20.
+
+As mentioned before, 80\% of the first 3000 samples are class 1. For
+this reason we have also shuffled the data when splitting it, so both
+sets would have same distribution.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}142}]:} \PY{n}{x\PYZus{}train}\PY{p}{,} \PY{n}{x\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}
+              \PY{n}{train\PYZus{}data\PYZus{}df}\PY{p}{,} \PY{n}{train\PYZus{}data\PYZus{}labels\PYZus{}df}\PY{p}{,} \PY{n}{test\PYZus{}size} \PY{o}{=} \PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{shuffle}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          
+          
+          
+          \PY{c+c1}{\PYZsh{} Changing csv format to numpy array format}
+          \PY{n}{labels\PYZus{}train} \PY{o}{=} \PY{n}{y\PYZus{}train}\PY{o}{.}\PY{n}{as\PYZus{}matrix}\PY{p}{(}\PY{p}{)}
+          \PY{n}{features\PYZus{}train} \PY{o}{=} \PY{n}{x\PYZus{}train}\PY{o}{.}\PY{n}{as\PYZus{}matrix}\PY{p}{(}\PY{p}{)}
+          \PY{n}{labels\PYZus{}test} \PY{o}{=} \PY{n}{y\PYZus{}test}\PY{o}{.}\PY{n}{as\PYZus{}matrix}\PY{p}{(}\PY{p}{)}
+          \PY{n}{features\PYZus{}test} \PY{o}{=} \PY{n}{x\PYZus{}test}\PY{o}{.}\PY{n}{as\PYZus{}matrix}\PY{p}{(}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{labels\PYZus{}train}\PY{o}{.}\PY{n}{size}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{features\PYZus{}train}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{labels\PYZus{}test}\PY{o}{.}\PY{n}{size}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{features\PYZus{}test}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+3054
+3054
+1309
+1309
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/opt/conda/lib/python3.6/site-packages/ipykernel\_launcher.py:7: FutureWarning: Method .as\_matrix will be removed in a future version. Use .values instead.
+  import sys
+/opt/conda/lib/python3.6/site-packages/ipykernel\_launcher.py:8: FutureWarning: Method .as\_matrix will be removed in a future version. Use .values instead.
+  
+/opt/conda/lib/python3.6/site-packages/ipykernel\_launcher.py:9: FutureWarning: Method .as\_matrix will be removed in a future version. Use .values instead.
+  if \_\_name\_\_ == '\_\_main\_\_':
+/opt/conda/lib/python3.6/site-packages/ipykernel\_launcher.py:10: FutureWarning: Method .as\_matrix will be removed in a future version. Use .values instead.
+  \# Remove the CWD from sys.path while we load stuff.
+
+    \end{Verbatim}
+
+    \hypertarget{methods-and-experiments}{%
+\subsection{3. Methods and experiments}\label{methods-and-experiments}}
+
+    \emph{- Explain your whole approach (you can include a block diagram
+showing the steps in your process).}
+
+\emph{- What methods/algorithms, why were the methods chosen. }
+
+\emph{- What evaluation methodology (cross CV, etc.).} Our
+implementation includes methods such as Logistic Regression and Random
+Forest Classifier. In this real-life case, it is also important to
+analyse the data before implementing any of the aforementioned methods.
+
+\hypertarget{approach}{%
+\subsubsection{Approach}\label{approach}}
+
+Our initial approach for modeling the problem was to minimize the
+dimensionality of the data with PCA as we have discussed before. Then
+using Logistic regression and One Versus Rest (OvR) multiclassification.
+We have chosen Logistic regression as it is good for classification
+problem, that is the result is binary.
+
+\hypertarget{sauli-kirjota-lr-ja-ovr-because-you-chose-them}{%
+\section{SAULI KIRJOTA LR JA OvR BECAUSE YOU CHOSE THEM
+:)}\label{sauli-kirjota-lr-ja-ovr-because-you-chose-them}}
+
+OvR
+
+\hypertarget{pca-and-logistic-regression}{%
+\subsubsection{PCA and Logistic
+Regression}\label{pca-and-logistic-regression}}
+
+As our first try we decided to use the PCA for reducing the high number
+offeatures before running Logistic regression, as we have already have
+analysed the data after PCA with 6 principal components. Below you can
+find the code for using PCA and LogisticRegression for learning a model.
+
+Accuracy from the given method for training data was 0.52 and for
+validation data 0.48. These figures are rather low for Logistic
+regression analysis model which motivated us to research other methods.
+
+\hypertarget{resultsiiin-the-results-from-logloss-was-around-0.24-and-accuracy-0.50-below-you-can-see-the-code-we-used-for-pca.}{%
+\paragraph{RESULTSIIIN The results from logloss was around 0.24 and
+accuracy 0.50 Below you can see the code we used for
+PCA.}\label{resultsiiin-the-results-from-logloss-was-around-0.24-and-accuracy-0.50-below-you-can-see-the-code-we-used-for-pca.}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}138}]:} \PY{c+c1}{\PYZsh{} Trials with ML algorithms}
+          \PY{n}{pca} \PY{o}{=} \PY{n}{PCA}\PY{p}{(}\PY{n}{n\PYZus{}components} \PY{o}{=} \PY{l+m+mi}{6}\PY{p}{,} \PY{n}{svd\PYZus{}solver} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{full}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{features\PYZus{}train\PYZus{}pca} \PY{o}{=} \PY{n}{pca}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{features\PYZus{}train}\PY{p}{)}
+          \PY{n}{features\PYZus{}test\PYZus{}pca} \PY{o}{=} \PY{n}{pca}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{features\PYZus{}test}\PY{p}{)}
+          
+          \PY{n}{clf} \PY{o}{=} \PY{n}{LogisticRegression}\PY{p}{(}\PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{23}\PY{p}{,} \PY{n}{solver}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lbfgs}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{multi\PYZus{}class}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ovr}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{max\PYZus{}iter} \PY{o}{=} \PY{l+m+mi}{1000}\PY{p}{)}
+          \PY{n}{ovr} \PY{o}{=} \PY{n}{OneVsRestClassifier}\PY{p}{(}\PY{n}{clf}\PY{p}{)}
+          \PY{n}{ovr}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{features\PYZus{}train\PYZus{}pca}\PY{p}{,}\PY{n}{labels\PYZus{}train}\PY{p}{)}
+          
+          
+          \PY{n}{score\PYZus{}train} \PY{o}{=} \PY{n}{ovr}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{features\PYZus{}train\PYZus{}pca}\PY{p}{,} \PY{n}{labels\PYZus{}train}\PY{p}{)}
+          \PY{n}{score\PYZus{}test} \PY{o}{=} \PY{n}{ovr}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{features\PYZus{}test\PYZus{}pca}\PY{p}{,} \PY{n}{labels\PYZus{}test}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Accuracy from training data is }\PY{l+s+si}{\PYZob{}:.4f\PYZcb{}}\PY{l+s+s2}{ and from test data }\PY{l+s+si}{\PYZob{}:.4f\PYZcb{}}\PY{l+s+s2}{. The difference is }\PY{l+s+si}{\PYZob{}:.4f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb}{float}\PY{p}{(}\PY{n}{score\PYZus{}train}\PY{p}{)}\PY{p}{,} \PY{n+nb}{float}\PY{p}{(}\PY{n}{score\PYZus{}test}\PY{p}{)}\PY{p}{,} \PY{n+nb}{float}\PY{p}{(}\PY{n}{score\PYZus{}train}\PY{o}{\PYZhy{}}\PY{n}{score\PYZus{}test}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n}{test\PYZus{}data\PYZus{}df\PYZus{}pca} \PY{o}{=} \PY{n}{pca}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{test\PYZus{}data\PYZus{}df}\PY{p}{)}
+          \PY{n}{predictData} \PY{o}{=} \PY{n}{ovr}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{test\PYZus{}data\PYZus{}df\PYZus{}pca}\PY{p}{)}
+          \PY{n}{predictProbData} \PY{o}{=} \PY{n}{ovr}\PY{o}{.}\PY{n}{predict\PYZus{}proba}\PY{p}{(}\PY{n}{test\PYZus{}data\PYZus{}df\PYZus{}pca}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{}y\PYZus{}pred = clf.predict(X\PYZus{}test)}
+          \PY{c+c1}{\PYZsh{}accuracy = np.sum(y\PYZus{}pred == y\PYZus{}test) / y\PYZus{}test.shape[0]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy from training data is 0.5167 and from test data 0.4767. The difference is 0.0400
+
+    \end{Verbatim}
+
+    \hypertarget{random-forest-classifier}{%
+\subsubsection{Random Forest
+Classifier}\label{random-forest-classifier}}
+
+We tried classifier called RandomForestClassifier as it is ``The
+state-of-art'' classifier at time being. With RF we acquired better
+results compared to the PCA and LR. Accuracy was 0.63 for training data
+and 0.55 for validation data. The difference between the accuracies was
+0.07 which implies that overfitting might be present. Overall, the
+0.55-0.63 accuracy is still rather low.
+
+\hypertarget{resultsiin}{%
+\paragraph{RESULTSIIN}\label{resultsiin}}
+
+0.20659 logloss 0.56240 accuracy
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}149}]:} \PY{n}{clf} \PY{o}{=} \PY{n}{RandomForestClassifier}\PY{p}{(}\PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{23}\PY{p}{,} \PY{n}{n\PYZus{}estimators}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{max\PYZus{}depth}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{)}
+          \PY{n}{ovr} \PY{o}{=} \PY{n}{OneVsRestClassifier}\PY{p}{(}\PY{n}{clf}\PY{p}{)}
+          \PY{n}{ovr}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{features\PYZus{}train}\PY{p}{,}\PY{n}{labels\PYZus{}train}\PY{p}{)}
+          
+          
+          \PY{n}{score\PYZus{}train} \PY{o}{=} \PY{n}{ovr}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{features\PYZus{}train}\PY{p}{,} \PY{n}{labels\PYZus{}train}\PY{p}{)}
+          \PY{n}{score\PYZus{}test} \PY{o}{=} \PY{n}{ovr}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{features\PYZus{}test}\PY{p}{,} \PY{n}{labels\PYZus{}test}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Accuracy from training data is }\PY{l+s+si}{\PYZob{}:.4f\PYZcb{}}\PY{l+s+s2}{ and from test data }\PY{l+s+si}{\PYZob{}:.4f\PYZcb{}}\PY{l+s+s2}{. The difference is }\PY{l+s+si}{\PYZob{}:.4f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb}{float}\PY{p}{(}\PY{n}{score\PYZus{}train}\PY{p}{)}\PY{p}{,} \PY{n+nb}{float}\PY{p}{(}\PY{n}{score\PYZus{}test}\PY{p}{)}\PY{p}{,} \PY{n+nb}{float}\PY{p}{(}\PY{n}{score\PYZus{}train}\PY{o}{\PYZhy{}}\PY{n}{score\PYZus{}test}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          
+          
+          \PY{n}{predictData} \PY{o}{=} \PY{n}{ovr}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{test\PYZus{}data\PYZus{}df}\PY{p}{)}
+          \PY{n}{predictProbData} \PY{o}{=} \PY{n}{ovr}\PY{o}{.}\PY{n}{predict\PYZus{}proba}\PY{p}{(}\PY{n}{test\PYZus{}data\PYZus{}df}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{}y\PYZus{}pred = clf.predict(X\PYZus{}test)}
+          \PY{c+c1}{\PYZsh{}accuracy = np.sum(y\PYZus{}pred == y\PYZus{}test) / y\PYZus{}test.shape[0]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy from training data is 0.6306 and from test data 0.5561. The difference is 0.0745
+
+    \end{Verbatim}
+
+    \hypertarget{logistic-regression-with-balancing}{%
+\subsection{Logistic Regression with
+Balancing}\label{logistic-regression-with-balancing}}
+
+With the skewed class distribution still in mind, we decided as next
+step to try to work on it. The scipy logistic regression has a parameter
+for automatically balancing some unevenly distributed data
+(class\_weight). The `balanced' mode tries to balance the distribution
+by adding new samples inversely proportional to class frequencies in the
+original data (n\_samples / (n\_classes * np.bincount(y)).
+
+Unfortunately, the balancing did not provide us results we were hoping
+for. Accuracy for training data dropped to 0.53 and for validation data
+to 0.47.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}158}]:} \PY{c+c1}{\PYZsh{} With balanced. It creates a new data set}
+          \PY{n}{clf} \PY{o}{=} \PY{n}{LogisticRegression}\PY{p}{(}\PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{42}\PY{p}{,} \PY{n}{solver}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lbfgs}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{class\PYZus{}weight}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{balanced}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{max\PYZus{}iter} \PY{o}{=} \PY{l+m+mi}{1000}\PY{p}{)}
+          \PY{n}{ovr} \PY{o}{=} \PY{n}{OneVsRestClassifier}\PY{p}{(}\PY{n}{clf}\PY{p}{)}
+          \PY{n}{ovr}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{features\PYZus{}train}\PY{p}{,}\PY{n}{labels\PYZus{}train}\PY{p}{)}
+          
+          
+          \PY{n}{score\PYZus{}train} \PY{o}{=} \PY{n}{ovr}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{features\PYZus{}train}\PY{p}{,} \PY{n}{labels\PYZus{}train}\PY{p}{)}
+          \PY{n}{score\PYZus{}test} \PY{o}{=} \PY{n}{ovr}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{features\PYZus{}test}\PY{p}{,} \PY{n}{labels\PYZus{}test}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Accuracy from training data is }\PY{l+s+si}{\PYZob{}:.4f\PYZcb{}}\PY{l+s+s2}{ and from test data }\PY{l+s+si}{\PYZob{}:.4f\PYZcb{}}\PY{l+s+s2}{. The difference is }\PY{l+s+si}{\PYZob{}:.4f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb}{float}\PY{p}{(}\PY{n}{score\PYZus{}train}\PY{p}{)}\PY{p}{,} \PY{n+nb}{float}\PY{p}{(}\PY{n}{score\PYZus{}test}\PY{p}{)}\PY{p}{,} \PY{n+nb}{float}\PY{p}{(}\PY{n}{score\PYZus{}train}\PY{o}{\PYZhy{}}\PY{n}{score\PYZus{}test}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          
+          
+          \PY{n}{predictData} \PY{o}{=} \PY{n}{ovr}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{test\PYZus{}data\PYZus{}df}\PY{p}{)}
+          \PY{n}{predictProbData} \PY{o}{=} \PY{n}{ovr}\PY{o}{.}\PY{n}{predict\PYZus{}proba}\PY{p}{(}\PY{n}{test\PYZus{}data\PYZus{}df}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{}y\PYZus{}pred = clf.predict(X\PYZus{}test)}
+          \PY{c+c1}{\PYZsh{}accuracy = np.sum(y\PYZus{}pred == y\PYZus{}test) / y\PYZus{}test.shape[0]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy from training data is 0.5341 and from test data 0.4729. The difference is 0.0612
+
+    \end{Verbatim}
+
+    \hypertarget{logistic-regression}{%
+\subsection{Logistic Regression}\label{logistic-regression}}
+
+As a last resort, we decided to run Logistic regression without PCA nor
+balancing. We had thought that some extra effort into preprocessing the
+data and using extra features, such as balancing, should give us better
+results. However, it seems that without any of these we got the best
+results for training and validation data, accuracy of 0.66 and 0.59
+respectively.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{clf} \PY{o}{=} \PY{n}{LogisticRegression}\PY{p}{(}\PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{42}\PY{p}{,} \PY{n}{solver}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lbfgs}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{max\PYZus{}iter} \PY{o}{=} \PY{l+m+mi}{5000}\PY{p}{)}
+        \PY{n}{ovr} \PY{o}{=} \PY{n}{OneVsRestClassifier}\PY{p}{(}\PY{n}{clf}\PY{p}{)}
+        \PY{n}{ovr}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{features\PYZus{}train}\PY{p}{,}\PY{n}{labels\PYZus{}train}\PY{p}{)}
+        
+        
+        \PY{n}{score\PYZus{}train} \PY{o}{=} \PY{n}{ovr}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{features\PYZus{}train}\PY{p}{,} \PY{n}{labels\PYZus{}train}\PY{p}{)}
+        \PY{n}{score\PYZus{}test} \PY{o}{=} \PY{n}{ovr}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{features\PYZus{}test}\PY{p}{,} \PY{n}{labels\PYZus{}test}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Accuracy from training data is }\PY{l+s+si}{\PYZob{}:.4f\PYZcb{}}\PY{l+s+s2}{ and from test data }\PY{l+s+si}{\PYZob{}:.4f\PYZcb{}}\PY{l+s+s2}{. The difference is }\PY{l+s+si}{\PYZob{}:.4f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb}{float}\PY{p}{(}\PY{n}{score\PYZus{}train}\PY{p}{)}\PY{p}{,} \PY{n+nb}{float}\PY{p}{(}\PY{n}{score\PYZus{}test}\PY{p}{)}\PY{p}{,} \PY{n+nb}{float}\PY{p}{(}\PY{n}{score\PYZus{}train}\PY{o}{\PYZhy{}}\PY{n}{score\PYZus{}test}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        
+        
+        \PY{n}{predictData} \PY{o}{=} \PY{n}{ovr}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{test\PYZus{}data\PYZus{}df}\PY{p}{)}
+        \PY{n}{predictProbData} \PY{o}{=} \PY{n}{ovr}\PY{o}{.}\PY{n}{predict\PYZus{}proba}\PY{p}{(}\PY{n}{test\PYZus{}data\PYZus{}df}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}y\PYZus{}pred = clf.predict(X\PYZus{}test)}
+        \PY{c+c1}{\PYZsh{}accuracy = np.sum(y\PYZus{}pred == y\PYZus{}test) / y\PYZus{}test.shape[0]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}145}]:} \PY{c+c1}{\PYZsh{} Outpt the above regression}
+          \PY{n}{write\PYZus{}output}\PY{p}{(}\PY{n}{predictData}\PY{p}{,} \PY{n}{output\PYZus{}file}\PY{p}{)}
+          \PY{n}{write\PYZus{}output\PYZus{}logloss}\PY{p}{(}\PY{n}{predictProbData}\PY{p}{,} \PY{n}{output\PYZus{}file\PYZus{}logloss}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{results}{%
+\subsection{4. Results}\label{results}}
+
+    \emph{Summarize the results of the experiments without discussing their
+implications.}
+
+\emph{- Include both performance measures (accuracy and LogLoss).}
+
+\emph{- How does it perform on kaggle compared to the train data.}
+
+\emph{- Include a confusion matrix.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}146}]:} \PY{c+c1}{\PYZsh{} Performance measure : Accuracy}
+          
+          
+          \PY{n}{y\PYZus{}pred} \PY{o}{=}\PY{n}{ovr}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{features\PYZus{}train}\PY{p}{)}
+          
+          \PY{n}{accuracy\PYZus{}overfit} \PY{o}{=} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{labels\PYZus{}train}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{n}{y\PYZus{}pred}\PY{p}{)}\PY{o}{/}\PY{n}{labels\PYZus{}train}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100}
+          \PY{n}{y\PYZus{}pred\PYZus{}test} \PY{o}{=} \PY{n}{ovr}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{features\PYZus{}test}\PY{p}{)}
+          \PY{n}{accu\PYZus{}test}  \PY{o}{=} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{labels\PYZus{}test}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{n}{y\PYZus{}pred\PYZus{}test}\PY{p}{)}\PY{o}{/}\PY{n}{labels\PYZus{}test}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Accuracy for the training data (overfitting): }\PY{l+s+si}{\PYZpc{}.4f}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{accuracy\PYZus{}overfit}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZpc{}}\PY{l+s+s2}{\PYZdq{}} \PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Accuracy for the predicted test data: }\PY{l+s+si}{\PYZpc{}.4f}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{accu\PYZus{}test}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZpc{}}\PY{l+s+s2}{\PYZdq{}} \PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy for the training data (overfitting): 63.0648 \%
+Accuracy for the predicted test data: 55.6150 \%
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}147}]:} \PY{c+c1}{\PYZsh{} Performance measure : LogLoss}
+          
+          \PY{c+c1}{\PYZsh{}features\PYZus{}test = features\PYZus{}test\PYZus{}pca}
+          
+          \PY{n}{predictProb\PYZus{}test} \PY{o}{=} \PY{n}{ovr}\PY{o}{.}\PY{n}{predict\PYZus{}proba}\PY{p}{(}\PY{n}{features\PYZus{}test}\PY{p}{)}
+          \PY{n}{logilossi} \PY{o}{=} \PY{n}{log\PYZus{}loss}\PY{p}{(}\PY{n}{labels\PYZus{}test}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{predictProb\PYZus{}test}\PY{p}{,} \PY{l+m+mf}{1e\PYZhy{}15}\PY{p}{)}
+          \PY{n}{logilossi} \PY{o}{=} \PY{n}{logilossi} \PY{o}{/} \PY{l+m+mi}{10} \PY{c+c1}{\PYZsh{} 10 different classes, thus}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Multiclass logarithmic loss for predicted test data: }\PY{l+s+si}{\PYZpc{}.2f}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{logilossi}\PY{p}{)}
+          
+          
+          
+          \PY{c+c1}{\PYZsh{}https://www.kaggle.com/c/predict\PYZhy{}closed\PYZhy{}questions\PYZhy{}on\PYZhy{}stack\PYZhy{}overflow/discussion/2644}
+          
+          \PY{c+c1}{\PYZsh{} Multiclass implemented by myself}
+          
+          \PY{n}{y\PYZus{}pred} \PY{o}{=}\PY{n}{predictProb\PYZus{}test}
+          \PY{n}{y\PYZus{}true} \PY{o}{=} \PY{n}{labels\PYZus{}test}
+          \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{l+s+sd}{print(y\PYZus{}true.shape)}
+          \PY{l+s+sd}{print(y\PYZus{}pred.shape)}
+          \PY{l+s+sd}{eps = 1e\PYZhy{}15}
+          \PY{l+s+sd}{predictions = np.clip(y\PYZus{}pred, eps, 1 \PYZhy{} eps)}
+          
+          \PY{l+s+sd}{\PYZsh{} normalize row sums to 1}
+          \PY{l+s+sd}{predictions /= predictions.sum(axis=1)[:, np.newaxis]}
+          
+          \PY{l+s+sd}{actual = np.zeros(y\PYZus{}pred.shape)}
+          \PY{l+s+sd}{rows = actual.shape[0]}
+          \PY{l+s+sd}{actual[np.arange(rows), y\PYZus{}true.astype(int)] = 1}
+          \PY{l+s+sd}{vsota = np.sum(actual * np.log(predictions))}
+          \PY{l+s+sd}{loglossu = \PYZhy{}1/rows*vsota}
+          
+          \PY{l+s+sd}{print(loglossu)}
+          \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Multiclass logarithmic loss for predicted test data: 0.14
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}147}]:} '\textbackslash{}nprint(y\_true.shape)\textbackslash{}nprint(y\_pred.shape)\textbackslash{}neps = 1e-15\textbackslash{}npredictions = np.clip(y\_pred, eps, 1 - eps)\textbackslash{}n\textbackslash{}n\# normalize row sums to 1\textbackslash{}npredictions /= predictions.sum(axis=1)[:, np.newaxis]\textbackslash{}n\textbackslash{}nactual = np.zeros(y\_pred.shape)\textbackslash{}nrows = actual.shape[0]\textbackslash{}nactual[np.arange(rows), y\_true.astype(int)] = 1\textbackslash{}nvsota = np.sum(actual * np.log(predictions))\textbackslash{}nloglossu = -1/rows*vsota\textbackslash{}n\textbackslash{}nprint(loglossu)\textbackslash{}n'
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}91}]:} \PY{c+c1}{\PYZsh{}Confusion matrix ...}
+         \PY{k+kn}{import} \PY{n+nn}{itertools}
+         
+         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+         
+         
+         
+         \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{svm}\PY{p}{,} \PY{n}{datasets}
+         
+         
+         
+         
+         \PY{k}{def} \PY{n+nf}{plot\PYZus{}confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{cm}\PY{p}{,} \PY{n}{classes}\PY{p}{,}
+         
+                                  \PY{n}{normalize}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,}
+         
+                                  \PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Confusion matrix}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+         
+                                  \PY{n}{cmap}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{cm}\PY{o}{.}\PY{n}{Blues}\PY{p}{)}\PY{p}{:}
+         
+            \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+         
+         \PY{l+s+sd}{   This function prints and plots the confusion matrix.}
+         
+         \PY{l+s+sd}{   Normalization can be applied by setting normalize=True.}
+         
+         \PY{l+s+sd}{   \PYZdq{}\PYZdq{}\PYZdq{}}
+         
+            \PY{k}{if} \PY{n}{normalize}\PY{p}{:}
+         
+                \PY{n}{cm} \PY{o}{=} \PY{n}{cm}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o}{/} \PY{n}{cm}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{newaxis}\PY{p}{]}
+         
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Normalized confusion matrix}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         
+            \PY{k}{else}\PY{p}{:}
+         
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Confusion matrix, without normalization}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         
+         
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{cm}\PY{p}{)}
+         
+         
+         
+            \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{cm}\PY{p}{,} \PY{n}{interpolation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{nearest}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{n}{cmap}\PY{p}{)}
+         
+            \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{n}{title}\PY{p}{)}
+         
+            \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{p}{)}
+         
+            \PY{n}{tick\PYZus{}marks} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{classes}\PY{p}{)}\PY{p}{)}
+         
+            \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{tick\PYZus{}marks}\PY{p}{,} \PY{n}{classes}\PY{p}{,} \PY{n}{rotation}\PY{o}{=}\PY{l+m+mi}{45}\PY{p}{)}
+         
+            \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{n}{tick\PYZus{}marks}\PY{p}{,} \PY{n}{classes}\PY{p}{)}
+         
+         
+         
+            \PY{n}{fmt} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.2f}\PY{l+s+s1}{\PYZsq{}} \PY{k}{if} \PY{n}{normalize} \PY{k}{else} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{d}\PY{l+s+s1}{\PYZsq{}}
+         
+            \PY{n}{thresh} \PY{o}{=} \PY{n}{cm}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)} \PY{o}{/} \PY{l+m+mf}{2.}
+         
+            \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{j} \PY{o+ow}{in} \PY{n}{itertools}\PY{o}{.}\PY{n}{product}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n}{cm}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n+nb}{range}\PY{p}{(}\PY{n}{cm}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+         
+                \PY{n}{plt}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{n}{j}\PY{p}{,} \PY{n}{i}\PY{p}{,} \PY{n+nb}{format}\PY{p}{(}\PY{n}{cm}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n}{fmt}\PY{p}{)}\PY{p}{,}
+         
+                         \PY{n}{horizontalalignment}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{center}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+         
+                         \PY{n}{color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{white}\PY{l+s+s2}{\PYZdq{}} \PY{k}{if} \PY{n}{cm}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{thresh} \PY{k}{else} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{black}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         
+         
+         
+            \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+         
+            \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{True label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+            \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Predicted label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         
+         
+         \PY{c+c1}{\PYZsh{} Compute confusion matrix}
+         \PY{n}{y\PYZus{}pred} \PY{o}{=} \PY{n}{ovr}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{features\PYZus{}test}\PY{p}{)}
+         \PY{n}{class\PYZus{}names} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{3}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{4}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{6}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{7}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{8}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{9}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{10}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{n}{cnf\PYZus{}matrix} \PY{o}{=} \PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}true}\PY{p}{,} \PY{n}{y\PYZus{}pred}\PY{p}{)}
+         
+         \PY{n}{np}\PY{o}{.}\PY{n}{set\PYZus{}printoptions}\PY{p}{(}\PY{n}{precision}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         
+         
+         
+         \PY{c+c1}{\PYZsh{} Plot non\PYZhy{}normalized confusion matrix}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{)}
+         
+         \PY{n}{plot\PYZus{}confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{cnf\PYZus{}matrix}\PY{p}{,} \PY{n}{classes}\PY{o}{=}\PY{n}{class\PYZus{}names}\PY{p}{,}
+         
+                              \PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Confusion matrix, without normalization}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         
+         
+         \PY{c+c1}{\PYZsh{} Plot normalized confusion matrix}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{122}\PY{p}{)}
+         
+         \PY{n}{plot\PYZus{}confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{cnf\PYZus{}matrix}\PY{p}{,} \PY{n}{classes}\PY{o}{=}\PY{n}{class\PYZus{}names}\PY{p}{,} \PY{n}{normalize}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}
+         
+                              \PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Normalized confusion matrix}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Confusion matrix, without normalization
+[[585  45   9   8   5   7   0   6   1   0]
+ [ 56  80   9   5   1   2   4   2   2   1]
+ [ 21  14  48   1   3   7   0   0   6   1]
+ [ 24   7   4  17   2   5   3   1   0   5]
+ [ 46   6   4   3   6   3   1   0   2   2]
+ [ 31  11   9   4   3  18   0   2   5   0]
+ [ 25   2   3   2   3   0   0   0   3   0]
+ [ 42   3   1   3   4   0   0  10   0   0]
+ [  3   3   7   2   1   2   0   0   6   0]
+ [ 22   2   1   4   1   0   0   0   1   0]]
+Normalized confusion matrix
+[[0.88 0.07 0.01 0.01 0.01 0.01 0.   0.01 0.   0.  ]
+ [0.35 0.49 0.06 0.03 0.01 0.01 0.02 0.01 0.01 0.01]
+ [0.21 0.14 0.48 0.01 0.03 0.07 0.   0.   0.06 0.01]
+ [0.35 0.1  0.06 0.25 0.03 0.07 0.04 0.01 0.   0.07]
+ [0.63 0.08 0.05 0.04 0.08 0.04 0.01 0.   0.03 0.03]
+ [0.37 0.13 0.11 0.05 0.04 0.22 0.   0.02 0.06 0.  ]
+ [0.66 0.05 0.08 0.05 0.08 0.   0.   0.   0.08 0.  ]
+ [0.67 0.05 0.02 0.05 0.06 0.   0.   0.16 0.   0.  ]
+ [0.12 0.12 0.29 0.08 0.04 0.08 0.   0.   0.25 0.  ]
+ [0.71 0.06 0.03 0.13 0.03 0.   0.   0.   0.03 0.  ]]
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_36_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{discussionconclusions}{%
+\subsection{5. Discussion/Conclusions}\label{discussionconclusions}}
+
+    \emph{Interpret and explain your results }
+
+\emph{- Discuss the relevance of the performance measures (accuracy and
+LogLoss) for imbalanced multiclass datasets. }
+
+\emph{- How the results relate to the literature. }
+
+\emph{- Suggestions for future research/improvement. }
+
+\emph{- Did the study answer your questions? }
+
+    \hypertarget{references}{%
+\subsection{6. References}\label{references}}
+
+    \emph{List of all the references cited in the document}
+
+    \hypertarget{appendix}{%
+\subsection{Appendix}\label{appendix}}
+
+\emph{Any additional material needed to complete the report can be
+included here. For example, if you want to keep additional source code,
+additional images or plots, mathematical derivations, etc. The content
+should be relevant to the report and should help explain or visualize
+something mentioned earlier. \textbf{You can remove the whole Appendix
+section if there is no need for it.} }
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{}features = preprocessing.normalize(features, \PYZsq{}l1\PYZsq{})}
+        \PY{c+c1}{\PYZsh{} Not normalized because https://stats.stackexchange.com/questions/48360/is\PYZhy{}standardization\PYZhy{}needed\PYZhy{}before\PYZhy{}fitting\PYZhy{}logistic\PYZhy{}regression}
+        
+        
+        
+        \PY{c+c1}{\PYZsh{} Display first 5 song feautures}
+        \PY{c+c1}{\PYZsh{} Display first 5 song labels }
+        \PY{c+c1}{\PYZsh{} Scatter plots of the features}
+        
+        \PY{c+c1}{\PYZsh{} rhythm, chroma and mfcc features scatter plot}
+        
+        \PY{c+c1}{\PYZsh{} The dimensionality of the data is high as there are 264 features. Analysing the data visually is very hard when the dimensionality increases over 6. There are multiple ways for reducing the dimensions of dataset, so it can be further analyzed. WE have used PCA to reduce the number of features.}
+        \PY{c+c1}{\PYZsh{} The features are divided in three categories: 1) Timbre; 2) Rhytm and 3) Pitch. In theory the data could be reduced to these three components, but if the features are reduced under, see below.}
+        \PY{c+c1}{\PYZsh{} We noticed by trial and error that with six principle six Principle Components it ispossible to maintain accuracy of the data and 99\PYZpc{} of the variance of the data.}
+        \PY{c+c1}{\PYZsh{} Scatter plot of reduced data set (6 features)}
+        
+        
+        
+        \PY{c+c1}{\PYZsh{} Display histogram data of labels (different kind of songs)}
+\end{Verbatim}
+
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
